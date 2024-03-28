@@ -24,9 +24,9 @@ json_df = spark.read.json("C:/Users/AmitKundu/Downloads/example.json",\
 
 parquet_df = spark.read.parquet("C:/Users/AmitKundu/Downloads/MT cars.parquet")
 
-csv_df.show()
-json_df.show()
-parquet_df.show()
+csv_df.limit(10).show(truncate=False)
+json_df.show(truncate=False)
+parquet_df.limit(10).show(truncate=False)
 
 csv_df.printSchema()
 json_df.printSchema()
