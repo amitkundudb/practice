@@ -1,5 +1,5 @@
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import explode, col
+from pyspark.sql.functions import explode,explode_outer, col
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, ArrayType, MapType
 
 spark = SparkSession.builder.appName("Custom JSON Schema").getOrCreate()
@@ -17,8 +17,11 @@ custom_schema = StructType([
 json_data = "C:/Users/AmitKundu/PycharmProjects/practice/pyspark/resource/sample_json_2.json"
 
 df = spark.read.json(json_data, schema=custom_schema, multiLine=True)
-df.printSchema()
-df.show(truncate=False)
+# df.printSchema()
+# df.show(truncate=False)
+
+df_explode = df.withColumn("users",explode_outer(col("users"))).select("users.*")
+df_explode.show()
 
 # Explode the 'users' array
 print("Explode the users Array")
