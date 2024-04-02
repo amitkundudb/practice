@@ -1,9 +1,7 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, ArrayType, MapType
 
-spark = SparkSession.builder \
-    .appName("Explode Array and Maps Functions") \
-    .getOrCreate()
+spark = SparkSession.builder.appName("Explode Array and Maps Functions").getOrCreate()
 
 data = [("Amit", ["apple", "banana", "cherry"], {"a": 1, "b": 2}),
         ("Suman", ["banana", "orange"], {"c": 3, "d": 4}),
